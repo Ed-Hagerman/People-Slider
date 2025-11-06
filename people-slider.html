@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>People Slider</title>
+
+<!-- Link the CSS file (upload both files to the SAME month folder) -->
+<link rel="stylesheet" href="people-slider.css">
+</head>
+<body>
+  <section id="s1" class="people-slider" aria-label="Team bios carousel">
+    <!-- Invisible anchors used for :target states -->
+    <div id="s2"></div>
+    <div id="s3"></div>
+
+    <div class="ps-viewport">
+      <div class="ps-track" aria-live="polite">
+
+        <!-- Slide 1 -->
+        <article class="ps-slide">
+          <figure class="ps-figure">
+            <img src="https://via.placeholder.com/1600x1200.png?text=Person+1" alt="Portrait of Alex Johnson">
+            <figcaption class="ps-caption"><span class="ps-name">Alex Johnson</span><span class="ps-role"> • Creative Director</span></figcaption>
+          </figure>
+          <div class="ps-bio">
+            <h3>Alex Johnson</h3>
+            <p>Alex leads brand and visual strategy with 12+ years in design across fintech and retail.</p>
+            <p>Focus: accessibility and scalable design operations.</p>
+          </div>
+        </article>
+
+        <!-- Slide 2 -->
+        <article class="ps-slide">
+          <figure class="ps-figure">
+            <img src="https://via.placeholder.com/1600x1200.png?text=Person+2" alt="Portrait of Priya Desai">
+            <figcaption class="ps-caption"><span class="ps-name">Priya Desai</span><span class="ps-role"> • Program Manager</span></figcaption>
+          </figure>
+          <div class="ps-bio">
+            <h3>Priya Desai</h3>
+            <p>Priya orchestrates multi-team initiatives with a focus on outcomes, risk, and crisp comms.</p>
+          </div>
+        </article>
+
+        <!-- Slide 3 -->
+        <article class="ps-slide">
+          <figure class="ps-figure">
+            <img src="https://via.placeholder.com/1600x1200.png?text=Person+3" alt="Portrait of Marco Alvarez">
+            <figcaption class="ps-caption"><span class="ps-name">Marco Alvarez</span><span class="ps-role"> • Lead Engineer</span></figcaption>
+          </figure>
+          <div class="ps-bio">
+            <h3>Marco Alvarez</h3>
+            <p>Marco builds resilient platforms with strong performance and developer experience.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <div class="ps-controls">
+      <!-- Arrows -->
+      <div class="ps-a" data-for="s1">
+        <a class="ps-btn" href="#s3" aria-label="Previous slide">← Prev</a>
+        <a class="ps-btn" href="#s2" aria-label="Next slide">Next →</a>
+      </div>
+      <div class="ps-a" data-for="s2">
+        <a class="ps-btn" href="#s1" aria-label="Previous slide">← Prev</a>
+        <a class="ps-btn" href="#s3" aria-label="Next slide">Next →</a>
+      </div>
+      <div class="ps-a" data-for="s3">
+        <a class="ps-btn" href="#s2" aria-label="Previous slide">← Prev</a>
+        <a class="ps-btn" href="#s1" aria-label="Next slide">Next →</a>
+      </div>
+
+      <!-- Dots -->
+      <div class="ps-dots" role="tablist" aria-label="Slide navigation">
+        <a class="ps-dot" data-for="s1" href="#s1" aria-label="Go to slide 1"></a>
+        <a class="ps-dot" data-for="s2" href="#s2" aria-label="Go to slide 2"></a>
+        <a class="ps-dot" data-for="s3" href="#s3" aria-label="Go to slide 3"></a>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

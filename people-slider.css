@@ -1,0 +1,81 @@
+:root{
+  --accent:#0d6efd; --maxw:1200px; --radius:18px;
+  --shadow:0 10px 30px rgba(0,0,0,.08);
+  --g:28px; --imgRatio:4/3; --pad:clamp(14px,2vw,22px);
+}
+
+/* Page base inside iframe */
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,Apple Color Emoji,Segoe UI Emoji;
+  color:#1d2330;
+}
+
+/* Slider shell */
+.people-slider{position:relative;margin:auto;max-width:var(--maxw);padding:var(--pad)}
+.people-slider, .people-slider *{box-sizing:border-box}
+
+/* Viewport + track (one slide visible) */
+.ps-viewport{overflow:hidden;border-radius:var(--radius);box-shadow:var(--shadow);background:#fff}
+.ps-track{display:flex;transition:transform .5s ease}
+
+/* Slide: stacked layout (image full width, bio below) */
+.ps-slide{
+  min-width:100%; flex:0 0 100%;
+  display:flex; flex-direction:column; gap:var(--g);
+  align-items:stretch; padding:clamp(14px,3vw,28px); overflow:hidden;
+}
+
+/* Image */
+.ps-figure{margin:0; position:relative; min-width:0}
+.ps-figure img{
+  width:100%; height:auto; object-fit:cover;
+  border-radius:calc(var(--radius) - 6px);
+  aspect-ratio:var(--imgRatio); display:block;
+}
+.ps-caption{
+  position:absolute; left:12px; bottom:12px;
+  background:rgba(0,0,0,.6); color:#fff; padding:8px 12px; border-radius:999px;
+  font-size:clamp(12px,1.6vw,14px)
+}
+.ps-name{font-weight:700}
+.ps-role{opacity:.9; margin-left:8px}
+
+/* Bio */
+.ps-bio{min-width:0; font-size:clamp(15px,1.6vw,18px); line-height:1.6; overflow-wrap:anywhere; word-break:break-word; hyphens:auto}
+.ps-bio h3{margin:.2em 0 .4em; font-size:clamp(20px,2.2vw,28px)}
+.ps-bio p{margin:.6em 0}
+
+/* Controls */
+.ps-controls{margin-top:16px; display:flex; justify-content:space-between; align-items:center; gap:10px}
+.ps-btn{
+  border:1px solid #d9dfe7; background:#fff; border-radius:10px;
+  padding:10px 14px; display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:inherit
+}
+.ps-btn:hover{border-color:var(--accent)}
+.ps-dots{display:flex; gap:8px; flex-wrap:wrap}
+.ps-dot{width:10px; height:10px; border-radius:50%; background:#cbd5e1; display:inline-block}
+
+/* Pure-CSS state using :target (no JS, no inputs) */
+.people-slider:not(:target) .ps-track{transform:translateX(0%)} /* default if no hash */
+#s1:target ~ .ps-viewport .ps-track{transform:translateX(0%)}
+#s2:target ~ .ps-viewport .ps-track{transform:translateX(-100%)}
+#s3:target ~ .ps-viewport .ps-track{transform:translateX(-200%)}
+
+/* Active dot color */
+#s1:target ~ .ps-controls .ps-dot[data-for="s1"],
+#s2:target ~ .ps-controls .ps-dot[data-for="s2"],
+#s3:target ~ .ps-controls .ps-dot[data-for="s3"],
+.people-slider:not(:target) .ps-controls .ps-dot[data-for="s1"]{background:var(--accent)}
+
+/* Show matching arrow pair */
+.ps-a{display:none}
+#s1:target ~ .ps-controls .ps-a[data-for="s1"],
+#s2:target ~ .ps-controls .ps-a[data-for="s2"],
+#s3:target ~ .ps-controls .ps-a[data-for="s3"],
+.people-slider:not(:target) .ps-controls .ps-a[data-for="s1"]{display:flex}
+
+/* Motion prefs + phone spacing */
+@media (prefers-reduced-motion:reduce){ .ps-track{transition:none} }
+@media (max-width:480px){ .ps-slide{gap:18px; padding:16px} }
